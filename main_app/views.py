@@ -1,9 +1,9 @@
-from unicodedata import name
+from django.urls import reverse
 from django.shortcuts import render
 from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DetailView
 from .models import Youtuber
 
@@ -34,7 +34,16 @@ class YoutuberCreate(CreateView):
     model = Youtuber
     fields = ['name', 'img', 'bio', 'verified_youtuber']
     template_name = "youtuber_create.html"
-    success_irl = "/youtubers/"
+    def get_success_url(self):
+        return reverse('youtuber_detail', kwargs={'pk': self.object.pk})
+
+class YoutuberUpdate(UpdateView):
+    model = Youtuber
+    fields = ['name', 'img', 'bio', 'verified_youtuber']
+    template_name = "youtuber_create.html"
+    def get_success_url(self):
+        return reverse('youtuber_detail', kwargs={'pk': self.object.pk})
+
 
 class YoutuberDetail(DetailView):
     model = Youtuber
