@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from .models import Youtuber
 
@@ -44,6 +44,10 @@ class YoutuberUpdate(UpdateView):
     def get_success_url(self):
         return reverse('youtuber_detail', kwargs={'pk': self.object.pk})
 
+class YoutuberDelete(DeleteView):
+    model = Youtuber
+    template_name = "youtuber_delete.html"
+    success_url = "/youtubers/"
 
 class YoutuberDetail(DetailView):
     model = Youtuber

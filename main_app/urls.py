@@ -7,5 +7,6 @@ urlpatterns = [
     path('youtubers/', views.Youtuberlist.as_view(), name="youtuber_list"),
     path('youtubers/new/', views.YoutuberCreate.as_view(), name="youtuber_create"),
     path('youtubers/<int:pk>/', views.YoutuberDetail.as_view(), name="youtuber_detail"),
-    path('youtubers/<int:pk>/update',views.YoutuberUpdate.as_view(), name="youtuber_update"),
+    path('youtubers/<int:pk>/update', views.YoutuberUpdate.as_view(), name="youtuber_update"),
+    path('youtubers/<int:pk>/delete', views.YoutuberDelete.as_view(), name="youtuber_delete"),
 ]
