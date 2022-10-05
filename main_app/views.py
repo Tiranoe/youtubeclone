@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic.base import TemplateView
+from django.views.generic.edit import CreateView
 from .models import Youtuber
 
 # Create your views here.
@@ -27,3 +28,9 @@ class Youtuberlist(TemplateView):
             context["youtubers"] = Youtuber.objects.all()
             context["header"] = "Trending Coding Youtubers"
         return context
+
+class YoutuberCreate(CreateView):
+    model = Youtuber
+    fields = ['name', 'img', 'bio', 'verified_youtuber']
+    template_name = "youtuber_create.html"
+    success_irl = "/youtubers/"
