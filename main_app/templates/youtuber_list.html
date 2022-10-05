@@ -26,7 +26,8 @@
 
 <div class="gallery">
   {% for youtuber in youtubers %}
-  <a href="">
+<!-- Here we are changing the href of the a tag to use the url DTL -->
+  <a href="{% url 'youtuber_detail' youtuber.pk %}">
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">
