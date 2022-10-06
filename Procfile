@@ -1,2 +1,1 @@
-touch Procfile
-    echo "web: npm start" >> Procfile
+web: gunicorn youtube_project.wsgi
